@@ -5,6 +5,7 @@ from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
 from pytriton.client import AsyncioModelClient
+import uvicorn
 
 
 class EmbedRequest(BaseModel):
@@ -29,3 +30,7 @@ async def get_embedding(req: EmbedRequest, request: Request):
     result = await client.infer_sample(texts=texts)
     embeddings = result["embeddings"]
     return embeddings.tolist()
+
+
+if __name__ == "__main__":
+    uvicorn.r
