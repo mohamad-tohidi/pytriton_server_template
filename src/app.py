@@ -33,4 +33,4 @@ async def get_embedding(req: EmbedRequest, request: Request):
 
 
 if __name__ == "__main__":
-    uvicorn.r
+    uvicorn.run("src/app:app", host="127.0.0.1", port=8000, reload=True)
