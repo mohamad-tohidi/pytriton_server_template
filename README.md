@@ -1,5 +1,4 @@
 
-
 # قالب PyTriton
 
 
@@ -145,14 +144,7 @@ It creates a volume (gitea-runner-data) to store its configuration.
 Replace https://your-gitea.com and `YOUR_TOKEN_HERE` with your values.
 
 ```bash
-docker run -d --restart=always \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v gitea-runner-data:/data \
-  -e GITEA_INSTANCE_URL=https://your-gitea.com \
-  -e GITEA_RUNNER_REGISTRATION_TOKEN=YOUR_TOKEN_HERE \
-  -e GITEA_RUNNER_NAME=my-docker-runner \
-  --name gitea_runner \
-  gitea/act_runner:latest
+docker run -d --restart=always   -v /var/run/docker.sock:/var/run/docker.sock   -v ./gitea-runner-data:/data   -e GITEA_INSTANCE_URL=https://git.t.etratnet.ir   -e GITEA_RUNNER_REGISTRATION_TOKEN=*************   -e GITEA_RUNNER_NAME=my-docker-runner -e GITEA_RUNNER_LABELS="self-hosted,H100" --name gitea_runner   gitea/act_runner:latest                                                                      
 ```
 
 After a few seconds, if you refresh the Settings > Actions > Runners page in Gitea, you should see your new runner with a green "Idle" status.
