@@ -27,4 +27,7 @@ RUN apt-get update && \
 RUN python3.12 -m ensurepip --upgrade && \
     python3.12 -m pip install --no-cache-dir pip setuptools wheel
 
+
+RUN pip3 install .
+
 EXPOSE 8000
