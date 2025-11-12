@@ -9,6 +9,4 @@ COPY . /app
 
 RUN uv sync --frozen --no-dev
 
-EXPOSE 8080
-
-CMD ["uv", "run", "uvicorn", "pytriton_template.api:app", "--host", "0.0.0.0", "--port", "8080"]
+EXPOSE 8000

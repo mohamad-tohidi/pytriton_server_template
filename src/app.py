@@ -1,13 +1,12 @@
 # the simple fastAPI wrapper
 import numpy as np
-import json
+import orjson as json
 import uvicorn
 from fastapi import FastAPI, Request, HTTPException
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
-from pytriton.client import (
-    AsyncioModelClient,
-)
+from pytriton.client import AsyncioModelClient
+
 from typing import List, Dict, Any
 from enum import Enum
 
@@ -141,7 +140,5 @@ def read_root():
 
 
 if __name__ == "__main__":
-    print(
-        "Starting FastAPI server on http://127.0.0.1:8000"
-    )
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    print("Starting FastAPI server on http://0.0.0.0:8000")
+    uvicorn.run(app, host="0.0.0.0", port=8000)

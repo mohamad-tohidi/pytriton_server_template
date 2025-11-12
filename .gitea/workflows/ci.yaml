@@ -9,12 +9,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
-      - name: Install uv
-        run: curl -sSf https://astral.sh/uv/install.sh | sh
-      
-      - name: Install dependencies
-        run: uv sync --frozen --no-dev
-      
       - name: Build Docker image
         run: docker build -t pytriton_template .
       
@@ -25,12 +19,7 @@ jobs:
           # Start container in background with secret passed as env
           docker run -d --name test_container --gpus all -p 8080:8080 -e HF_TOKEN=$HF_TOKEN pytriton_template
           
-          # Wait for startup
           sleep 10
           
-          # Smoke test: Check health endpoint (assumes public model or token works)
           curl -f http://localhost:8080/health || exit 1
           
-          # Clean up
-          docker stop test_container
-          docker rm test_container
