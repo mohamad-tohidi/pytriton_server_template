@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/tritonserver:24.04-py3
+FROM tritonserver:25.02-pt
 
 RUN pip install uv
 
