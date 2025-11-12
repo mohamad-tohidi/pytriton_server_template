@@ -1,7 +1,7 @@
 FROM python:3.12-slim AS builder
 WORKDIR /app
 COPY . .
-RUN pip install --no-cache-dir .
+RUN pip install --no-cache-dir --user .
 
 FROM nvidia/cuda:12.6.2-runtime-ubuntu22.04
 ENV PYTHONUNBUFFERED=1
