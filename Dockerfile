@@ -7,6 +7,6 @@ ENV PATH="/root/.cargo/bin:$PATH"
 WORKDIR /app
 COPY . /app
 
-RUN uv sync --frozen --no-dev
+RUN uv sync --frozen --no-dev --extra cu128
 
 EXPOSE 8000

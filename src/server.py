@@ -11,7 +11,7 @@ from typing import Dict, Literal, Union, List
 import orjson as json
 
 MODEL = BGEM3FlagModel(
-    "BAAI/bge-m3", use_fp16=False, devices="cuda:0"
+    "BAAI/bge-m3", use_fp16=False, devices="cpu"
 )
 MAX_LENGTH = 8000
 
