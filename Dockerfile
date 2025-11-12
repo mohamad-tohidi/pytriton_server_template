@@ -4,8 +4,7 @@ WORKDIR /app
 COPY . /app
 
 RUN apt-get update && \
-    apt-get install -y python3.12 curl && \
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12 && \
+    apt install -y python3.12 && \
     rm -rf /var/lib/apt/lists/*
 
 RUN python3.12 --version && pip --version
