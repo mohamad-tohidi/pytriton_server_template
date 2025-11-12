@@ -1,4 +1,4 @@
-FROM python:3.12-slim 
+FROM python:3.12-slim as builder
 WORKDIR /app
 COPY . .
 RUN pip install --no-cache-dir .
@@ -6,7 +6,7 @@ RUN pip install --no-cache-dir .
 FROM nvidia/cuda:12.6.2-runtime-ubuntu22.04
 ENV PYTHONUNBUFFERED=1
 
-COPY --from=python:3.12-slim  /install /usr/local
+COPY --from=builder /install /usr/local
 
 ENV PATH=/root/.local/bin:$PATH
 WORKDIR /app
