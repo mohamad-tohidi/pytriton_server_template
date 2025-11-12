@@ -1,9 +1,10 @@
-FROM nvidia/cuda:12.6.2-runtime-ubuntu22.04
+FROM nvcr.io/nvidia/tritonserver:24.04-py3
+
+RUN pip install uv
 
 WORKDIR /app
 COPY . /app
 
-RUN apt-get update && apt-get install -y python3 python3-pip
-RUN pip install uv && uv sync --frozen --no-dev 
+RUN uv sync --frozen --no-dev 
 
 EXPOSE 8000
