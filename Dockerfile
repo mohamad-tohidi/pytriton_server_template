@@ -23,6 +23,11 @@ RUN wget -q https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py \
  && python3.12 /tmp/get-pip.py \
  && rm /tmp/get-pip.py
 
- WORKDIR /app
+
+WORKDIR /app
 
 COPY . .
+
+RUN pip install .
+
+EXPOSE 8000
