@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.6.2-runtime-ubuntu22.04 
+FROM docker.arvancloud.ir/nvidia/cuda:12.6.2-runtime-ubuntu22.04 
 
 
 
