@@ -1,14 +1,19 @@
-FROM python:3.12-slim AS builder
+FROM nvidia/cuda:12.6.2-runtime-ubuntu22.04 
+
+
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Tehran
+
+RUN ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZ > /etc/timezone && \
+    apt update && \
+    apt install -y software-properties-common tzdata && \
+    add-apt-repository ppa:deadsnakes/ppa -y && \
+    apt update && apt install -y python3.12 python3.12-venv && \
+    rm -rf /var/lib/apt/lists/*
+
+
 WORKDIR /app
+
 COPY . .
-RUN pip install --no-cache-dir --user .
-
-FROM nvidia/cuda:12.6.2-runtime-ubuntu22.04
-ENV PYTHONUNBUFFERED=1
-
-COPY --from=builder /root/.local /root/.local
-
-ENV PATH=/root/.local/bin:$PATH
-WORKDIR /app
-
-EXPOSE 8000
