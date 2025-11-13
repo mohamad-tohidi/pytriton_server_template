@@ -13,11 +13,9 @@ jobs:
         run: docker build -t pytriton_template .
       
       - name: Test Docker image
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}  
         run: |
           # Start container in background with secret passed as env
-          docker run -d --name test_container --gpus all -p 8080:8080 -e HF_TOKEN=$HF_TOKEN pytriton_template
+          docker run --restar=unless-stopped -d --name test_container --gpus all -p 8001:8000  pytriton_template
           
           sleep 10
           
